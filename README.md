@@ -27,12 +27,12 @@
                 new ProgrammingLanguage[]{
                         ProgrammingLanguage.JAVA,
                         ProgrammingLanguage.Solidity,
-                        ProgrammingLanguage.Python,
-                        ProgrammingLanguage.NodeJs
+                        ProgrammingLanguage.Python
                 },
                 new WebDevelopment[]{
                         WebDevelopment.HTML_CSS,
                         WebDevelopment.JavaScript,
+                        WebDevelopment.NodeJs,
                         WebDevelopment.ReactJs,
                 },
                 new Database[]{
