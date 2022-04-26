@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>l.Bombo</title>
+    <link rel="icon" href="memoji.svg">
+    <script src="https://kit.fontawesome.com/7d777509e0.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            position: absolute;
+            background-color: #121212;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        @media screen and (max-width : 1000px) {
+            #codeP {
+                color: #b8b9b8;
+                font-family: 'Courier Prime', monospace;
+                font-size: 1.25vh;
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                overflow-y: auto;
+
+            }
+
+            #curs {
+                color: #b8b9b8;
+                font-family: 'Courier Prime', monospace;
+            }
+
+            #code {
+                position: absolute;
+                width: 70%;
+                height: 70%;
+                top: 15%;
+                left: 15%;
+                user-select: none;
+            }
+
+            #other {
+                position: absolute;
+                width: 50%;
+                height: 20%;
+                top: 69%;
+                left: 25%;
+                opacity: 0;
+                text-align: center;
+            }
+
+            #comment {
+                color: #7e7f7e;
+            }
+
+            .step {
+                position: relative;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+            }
+
+            #link {
+                position: relative;
+                width: 100%;
+                height: 85%;
+                top: 0;
+                left: 0;
+                font-size: 3vh;
+                text-align: center;
+                word-spacing: 3.5vh;
+                box-sizing: border-box;
+                padding: 3%;
+                user-select: none;
+            }
+
+            #link > a {
+                text-decoration: none;
+                color: #b8b9b8;
+                font-family: 'Courier Prime', monospace;
+            }
+
+            #goDown {
+                position: relative;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 15%;
+                text-align: center;
+                color: gray;
+                font-size: 7vh;
+                opacity: 0;
+            }
+
+            @keyframes op {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+
+            .titleStep {
+                position: absolute;
+                top: 10%;
+                color: white;
+                left: 50%;
+                transform: translateX(-50%);
+                font-family: 'Montserrat', sans-serif;
+                font-size: 2.25vh;
+                user-select: none;
+                text-align: center;
+            }
+
+            .serv {
+                position: relative;
+                width: 92%;
+                height: 30%;
+                top: 30%;
+                margin-left: 4%;
+                margin-bottom: 5%;
+                border-radius: 1.75rem;
+                background-color: #1c1c1c;
+                user-select: none;
+            }
+
+            .serv > .header {
+                position: relative;
+                top: 7%;
+                left: 3%;
+                height: 15%;
+                width: 94%;
+                border-radius: 1.75rem 1.75rem 0 0;
+                display: flex;
+            }
+
+            .serv > .header > .image {
+                width: 10%;
+                height: 100%;
+                left: 2%;
+                font-size: 3vh;
+                text-align: center;
+
+                border-radius: 50%;
+            }
+
+            .serv > .header > .image > i {
+                margin-top: 15%;
+            }
+
+            .serv > .header > .title {
+                font-family: 'Ubuntu', sans-serif;
+                color: #b8b9b8;
+                margin-left: 8%;
+                margin-top: -3%;
+                font-size: 1.7vh;
+            }
+
+            .serv > .body {
+                position: relative;
+                left: 7%;
+                width: 86%;
+                height: 60%;
+                top: 15%;
+                color: #b8b9b8;
+                font-family: 'Courier Prime', monospace;
+                font-size: 2vh;
+            }
+
+            .serv > .footer {
+                color: #b8b9b8;
+                left: 8%;
+                font-family: 'Courier Prime', monospace;
+                font-size: 2vh;
+                position: relative;
+            }
+
+            #services {
+                display: list-item !important;
+                margin-bottom: 100% !important;
+            }
+
+            #foot {
+                position: relative;
+                top: 0;
+                height: 15%;
+                width: 90%;
+                left: 5%;
+                text-align: center;
+                color: #b8b9b8;
+                font-family: 'Courier Prime', monospace;
+                font-size: 2vh;
+                user-select: none;
+            }
+
+            #contactMeGoogle {
+                position: relative;
+                width: 70%;
+                height: 70%;
+                top: 30%;
+                margin-left: 15%;
+                border-radius: 1.75rem;
+                background-color: #1c1c1c;
+                user-select: none;
+            }
+
+            embed {
+                height: 100%;
+            }
+        }
+
+        @media screen and (min-width: 1000px) {
+            #codeP {
+                color: #b8b9b8;
+                font-family: 'Courier Prime', monospace;
+                font-size: 2.3vh;
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                overflow-y: auto;
+
+            }
+
+            #curs {
+                color: #b8b9b8;
+                font-family: 'Courier Prime', monospace;
+            }
+
+            #code {
+                position: absolute;
+                width: 45%;
+                height: 70%;
+                top: 15%;
+                left: 5%;
+                user-select: none;
+            }
+
+            #other {
+                position: absolute;
+                width: 45%;
+                height: 70%;
+                top: 15%;
+                left: 50%;
+                text-align: right;
+                opacity: 0;
+            }
+
+            #comment {
+                color: #7e7f7e;
+            }
+
+            .step {
+                position: relative;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+            }
+
+            #link {
+                position: relative;
+                width: 100%;
+                height: 85%;
+                top: 0;
+                left: 0;
+                font-size: 3vh;
+                text-align: center;
+                word-spacing: 3.5vh;
+                box-sizing: border-box;
+                padding: 3%;
+                user-select: none;
+            }
+
+            #link > a {
+                text-decoration: none;
+                color: #b8b9b8;
+                font-family: 'Courier Prime', monospace;
+            }
+
+            #goDown {
+                position: relative;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 15%;
+                text-align: center;
+                color: gray;
+                font-size: 7vh;
+                opacity: 0;
+            }
+
+            @keyframes op {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+
+            .titleStep {
+                position: absolute;
+                top: 10%;
+                color: white;
+                left: 50%;
+                transform: translateX(-50%);
+                font-family: 'Montserrat', sans-serif;
+                font-size: 3vh;
+                user-select: none;
+                text-align: center;
+            }
+
+            .serv {
+                position: relative;
+                width: 20%;
+                height: 40%;
+                top: 30%;
+                margin-left: 4%;
+                border-radius: 1.75rem;
+                background-color: #1c1c1c;
+                user-select: none;
+            }
+
+            .serv > .header {
+                position: relative;
+                top: 7%;
+                left: 3%;
+                height: 15%;
+                width: 94%;
+                border-radius: 1.75rem 1.75rem 0 0;
+                display: flex;
+            }
+
+            .serv > .header > .image {
+                width: 16.5%;
+                height: 100%;
+                left: 2%;
+                font-size: 4vh;
+                text-align: center;
+
+                border-radius: 50%;
+            }
+
+            .serv > .header > .image > i {
+                margin-top: 12.5%;
+            }
+
+            .serv > .header > .title {
+                font-family: 'Ubuntu', sans-serif;
+                color: #b8b9b8;
+                margin-left: 8%;
+                margin-top: -1%;
+                font-size: 1.7vh;
+            }
+
+            .serv > .body {
+                position: relative;
+                left: 7%;
+                width: 86%;
+                height: 60%;
+                top: 15%;
+                color: #b8b9b8;
+                font-family: 'Courier Prime', monospace;
+                font-size: 2vh;
+            }
+
+            .serv > .footer {
+                color: #b8b9b8;
+                left: 8%;
+                font-family: 'Courier Prime', monospace;
+                font-size: 2vh;
+                position: relative;
+            }
+
+            #foot {
+                position: relative;
+                top: 0;
+                left: 0;
+                height: 15%;
+                width: 100%;
+                text-align: center;
+                color: #b8b9b8;
+                font-family: 'Courier Prime', monospace;
+                font-size: 2vh;
+                user-select: none;
+            }
+
+            #contactMeGoogle {
+                position: relative;
+                width: 70%;
+                height: 70%;
+                top: 30%;
+                margin-left: 15%;
+                border-radius: 1.75rem;
+                background-color: #1c1c1c;
+                user-select: none;
+            }
+
+            embed {
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="step">
+    <div id="link">
+        <a href="https://www.linkedin.com/in/luca-bombonati/"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://github.com/Bombo01"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.instagram.com/l.bombo/"><i class="fa-brands fa-instagram"></i></a>
+        <a href="mailto:lucabombonati31@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+    <div class="titleStep">
+        <h2>Hi there 👋, I'm Bombo</h2>
+    </div>
+    <div id="code">
+        <p id="codeP"><span id="comment"></span><span id="curs">|</span></p>
+    </div>
+    <div id="other">
+        <embed src="memoji.svg"/>
+    </div>
+    <div id="goDown">
+        <a href="#services" style="color: #b8b9b8"><i class="fa-solid fa-sort-down"></i></a>
+    </div>
+</div>
+<div class="step" id="services" style="display: flex">
+    <div class="titleStep">
+        <h2>My services</h2>
+    </div>
+    <div class="serv" onmouseenter="borderOn(this)" onmouseleave="borderOff(this)">
+        <div class="header">
+            <div class="image" style="background-color: rgba(54, 152, 217, .2)">
+                <i class="fa-brands fa-java" style="color: #3698d9;"></i>
+            </div>
+            <div class="title">
+                <h2>Java app</h2>
+            </div>
+        </div>
+        <div class="body">
+            <p>Using Java, I will program a software which will help you in your business or anything you need.</p>
+        </div>
+        <div class="footer">
+            <p><a href="#contact" style="color: #b8b9b8">Ask me more infos</a></p>
+        </div>
+    </div>
+    <div class="serv" onmouseenter="borderOn(this)" onmouseleave="borderOff(this)">
+        <div class="header">
+            <div class="image" style="background-color: rgba(120, 134, 205, .2)">
+                <i class="fa-brands fa-ethereum" style="color: #7886cd;"></i>
+            </div>
+            <div class="title">
+                <h2>DeFi contract</h2>
+            </div>
+        </div>
+        <div class="body">
+            <p>Blockchain is a new reality which is here to stay. I code with Solidity and Truffle to build this new
+                reality on Ethereum ecosystem.</p>
+        </div>
+        <div class="footer">
+            <p><a href="#contact" style="color: #b8b9b8">Ask me more infos</a></p>
+        </div>
+    </div>
+    <div class="serv" onmouseenter="borderOn(this)" onmouseleave="borderOff(this)">
+        <div class="header">
+            <div class="image" style="background-color: rgba(108, 166, 94, .2)">
+                <i class="fa-brands fa-node-js" style="color: #6ca65e"></i>
+            </div>
+            <div class="title">
+                <h2>Full stack web dev</h2>
+            </div>
+        </div>
+        <div class="body">
+            <p>I develop backend webapps using NodeJs and MongoDB API. Then, I can create frontend pages
+                using HTML5, CSS, JavaScript and ReactJs.</p>
+        </div>
+        <div class="footer">
+            <p><a href="#contact" style="color: #b8b9b8">Ask me more infos</a></p>
+        </div>
+    </div>
+    <div class="serv" onmouseenter="borderOn(this)" onmouseleave="borderOff(this)">
+        <div class="header">
+            <div class="image" style="background-color: rgba(251, 211, 67, .2)">
+                <i class="fa-brands fa-python" style="color: #fbd343"></i>
+            </div>
+            <div class="title">
+                <h2>Machine learning</h2>
+            </div>
+        </div>
+        <div class="body">
+            <p>I use Python to solve binary problems implementing the Perceptron Learning Algorithm. With the same
+                dataset, I
+                can compute linear and polynomial regression.</p>
+        </div>
+        <div class="footer">
+            <p><a href="#contact" style="color: #b8b9b8">Ask me more infos</a></p>
+        </div>
+    </div>
+</div>
+<div class="step" id="contact">
+    <div class="titleStep">
+        <h2>Contact me</h2>
+    </div>
+    <iframe id="contactMeGoogle"
+            src="https://docs.google.com/forms/d/e/1FAIpQLSfIuiTTrd_uA6WYCu3YSYRSJUfYWsn-v6kSD1IORT0ZX-I5QQ/viewform?embedded=true"
+            width="640" height="70%" frameborder="0" marginheight="0" marginwidth="0">Loading…
+    </iframe>
+</div>
+<div id="foot">
+    <p>© Copyright 2022 Luca Bombonati. All right reserved</p>
+</div>
+<script>
+    let i = 0;
+    let txt =
+        'public class Bombo extends Developer {' +
+        '$£public static final String name = "Luca";' +
+        '$£public static final String username = "Bombo01";' +
+        '$£public static final Student student = new Student(' +
+        '$££University.UNIVERSITY_OF_PADUA,' +
+        '$££Course.INFORMATION_ENGINEERING ' +
+        '$£);' +
+
+        '$£public static final Technologies tech = new Technologies(' +
+        '$££new ProgrammingLanguage[]{' +
+        '$£££ProgrammingLanguage.JAVA,' +
+        '$£££ProgrammingLanguage.Solidity,' +
+        '$£££ProgrammingLanguage.Python,' +
+        '$£££ProgrammingLanguage.NodeJs ' +
+        '$££},' +
+        '$££new WebDevelopment[]{' +
+        '$£££WebDevelopment.HTML_CSS,' +
+        '$£££WebDevelopment.JavaScript,' +
+        '$£££WebDevelopment.ReactJs ' +
+        '$££}' +
+        '$£);' +
+        '$}'
+    ;
+    let comment = " //and still learning..."
+
+    /*
+    easter egg 64 w/m
+     */
+
+    let speed = 0; //12
+    let hWord = "";
+
+    function typeWriter() {
+        try {
+            document.getElementById("curs").remove();
+            document.getElementById("comment").remove();
+        } catch {
+        }
+
+        if (i < txt.length) {
+            let addingChar = txt.charAt(i);
+            if (addingChar === "$") {
+                document.getElementById("codeP").innerHTML += "<br />";
+                hWord = "";
+            } else if (addingChar === "£") {
+                document.getElementById("codeP").innerHTML += "&emsp;";
+                hWord = "";
+            } else {
+                document.getElementById("codeP").innerHTML += txt.charAt(i);
+                if (addingChar === " " || addingChar === "." || addingChar === "," || addingChar === ";" || addingChar === ")" || addingChar === "}") {
+                    if (addingChar === ";")
+                        addingChar = "<span style=\"color: #b16838\">;</span>"
+
+                    // java private words
+                    if (hWord === "public" || hWord === "static" || hWord === "new" || hWord === "class" || hWord === "final" || hWord === "extends") {
+                        document.getElementById("codeP").innerHTML = document.getElementById("codeP").innerHTML.slice(0, -(hWord.length + 1)) + "<span style=\"color: #b16838\">" + hWord + "</span>" + addingChar
+                    }
+                    // strings
+                    else if (hWord === "\"Luca\"" || hWord === "\"Bombo01\"") {
+                        document.getElementById("codeP").innerHTML = document.getElementById("codeP").innerHTML.slice(0, -(hWord.length + 1)) + "<span style=\"color: #658159\">" + hWord + "</span>" + addingChar
+                    }
+                    // objects
+                    else if (hWord === "UNIVERSITY_OF_PADUA" || hWord === "INFORMATION_ENGINEERING" || hWord === "JAVA" || hWord === "Solidity" || hWord === "Python" || hWord === "NodeJs" || hWord === "HTML_CSS" || hWord === "JavaScript" || hWord === "ReactJs") {
+                        document.getElementById("codeP").innerHTML = document.getElementById("codeP").innerHTML.slice(0, -(hWord.length + 1)) + "<span style=\"color: #5981ad\">" + hWord + "</span>" + addingChar
+                    }
+                    hWord = "";
+                } else
+                    hWord += addingChar;
+            }
+
+            document.getElementById("codeP").innerHTML += "<span id=\"curs\">|</span>";
+            document.getElementById("codeP").innerHTML += "<span id=\"comment\"></span>";
+
+            i++;
+            setTimeout(typeWriter, speed);
+        } else if (i < (txt.length + comment.length)) {
+            if (i === txt.length) {
+                document.getElementById("codeP").innerHTML += "<span id=\"comment\"></span>";
+                document.getElementById("goDown").style.animation = "op 2s forwards"
+                document.getElementById("other").style.animation = "op 1s forwards"
+            }
+            let addingChar = comment.charAt(i - txt.length);
+            document.getElementById("comment").innerHTML += addingChar
+
+            i++;
+            setTimeout(typeWriter, speed);
+        } else {
+            document.getElementById("codeP").innerHTML += "<span id=\"curs\">|</span>";
+            setInterval(blinker, 650);
+        }
+    }
+
+    function blinker() {
+        if (document.getElementById('curs').style.opacity === "1") {
+            document.getElementById('curs').style.opacity = "0";
+        } else {
+            document.getElementById('curs').style.opacity = "1";
+        }
+    }
+
+    window.onload = function () {
+        typeWriter();
+    }
+</script>
+<script>
+    function borderOn(elem) {
+        elem.style.backgroundColor = elem.children[0].children[0].style.backgroundColor;
+    }
+
+    function borderOff(elem) {
+        elem.style.backgroundColor = "#1c1c1c";
+    }
+</script>
+</body>
+</html>
